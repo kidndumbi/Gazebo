@@ -20,3 +20,9 @@
 
   flex: 1 1 auto;
 }
+
+.sideNav{
+
+    background-color: grey;
+    color: white;
+}

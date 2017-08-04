@@ -10,42 +10,42 @@ import {Router} from "@angular/router";
 
 export class LoginPageComponent implements OnInit {
 
-      email: string;
-   password: string;
-    loading = false;
 
-    constructor(private auth: AuthService, private router: Router) { }
+    constructor(private auth: AuthService, private router: Router) { 
+
+        this.auth.getAuthenticatedUser().subscribe(user=>{
+            if(user){
+             this.router.navigate(['home']); 
+            }
+        })
+
+    }
 
 
-     async login(email:string, password: string){
+     async login(event){
+
+        console.log(event);
 
          try{
-          const result = await this.auth.login(email, password)
+          const result = await this.auth.login(event.email, event.password)
           console.log("success");
           this.router.navigate(['home']); 
           
           
 
         }catch(e){
-        
+            console.log(e.message);
         }
 
   }
 
 
-    // login() {
-    //     this.loading = true;
-        // this.authenticationService.login(this.model.username, this.model.password)
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
-    //}
+  register(event){
+
+      this.router.navigate(['profile'])
+
+  }
 
 
-    ngOnInit() { }
+  ngOnInit() { }
 }

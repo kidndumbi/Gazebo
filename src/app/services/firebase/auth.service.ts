@@ -21,11 +21,6 @@ export class AuthService {
 
     }
 
-    // loginFacebook(email: string, password: string){
-
-    //     return this.afAuth.auth.
-
-    // }
 
     getAuthenticatedUser(){
 

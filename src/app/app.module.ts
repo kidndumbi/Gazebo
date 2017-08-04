@@ -7,10 +7,12 @@ import { HomePageComponent } from './pages/homePage/homepage.component';
 import { LoginPageComponent } from './pages/loginPage/loginPage.component';
 import { RegisterPageComponent } from './pages/registerPage/registerPage.component';
 import { ProfilePageComponent } from './pages/profilePage/profilePage.component';
+import { PrivateChatModalComponent } from './modals/privateChatModal.component';
 import { RouterModule } from '@angular/router';
 
 import { appRoutes } from './app.routing';
 import { AngMaterialModule } from './modules/angMaterial.module';
+import { MyComponentsModule } from './components/myComponents.module';
 
 import { firebaseConfig  } from './configFiles/firebaseConfig';
 // Import the AF2 Module
@@ -20,6 +22,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from './services/firebase/firebase.service';
 import { AuthService } from './services/firebase/auth.service';
+import {FirebaseGuard } from './services/firebase/guard.service';
 
 
 import { AppComponent } from './app.component';
@@ -33,7 +36,9 @@ import 'hammerjs';
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    PrivateChatModalComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -43,10 +48,14 @@ import 'hammerjs';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    MyComponentsModule
 
   ],
-  providers: [FirebaseService, AuthService],
+    entryComponents: [
+    PrivateChatModalComponent
+  ],
+  providers: [FirebaseService, AuthService, FirebaseGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

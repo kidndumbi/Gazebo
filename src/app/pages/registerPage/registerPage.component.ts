@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/firebase/auth.service';
+import {Router} from "@angular/router";
+
 
 @Component({
     selector: 'registerPage',
@@ -14,7 +16,15 @@ export class RegisterPageComponent implements OnInit {
     loading = false;
 
 
-    constructor(private auth: AuthService) { }
+    constructor(private auth: AuthService, private router: Router) { 
+
+        this.auth.getAuthenticatedUser().subscribe(user=>{
+            if(user){
+             this.router.navigate(['home']); 
+            }
+        })
+
+    }
 
 
 
@@ -22,11 +32,13 @@ export class RegisterPageComponent implements OnInit {
  
      try{
           const result = await this.auth.register(email, password);
+
           this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
           console.log('success!')
+          this.router.navigate(['profile']); 
      }catch(e){
            
-           console.log('failed!')
+           console.log(e.message);
            this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
           //  this.auth.logout().then(a=>{console.log(a)})
           //  this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))

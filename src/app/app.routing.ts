@@ -5,13 +5,15 @@ import { HomePageComponent } from './pages/homePage/homepage.component';
 import { LoginPageComponent } from './pages/loginPage/loginPage.component';
 import { RegisterPageComponent } from './pages/registerPage/registerPage.component';
 import { ProfilePageComponent } from './pages/profilePage/profilePage.component';
+import {FirebaseGuard } from './services/firebase/guard.service';
 
 
 export const appRoutes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
-    data: {  }
+    data: {  },
+    canActivate: [FirebaseGuard]
   },
      {
     path: 'login',
@@ -26,6 +28,7 @@ export const appRoutes: Routes = [
   {
     path: 'profile',
     component: ProfilePageComponent,
+    canActivate: [FirebaseGuard],
     data: {  }
   },
     {
@@ -34,11 +37,11 @@ export const appRoutes: Routes = [
     data: {  }
   },
   { path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: '**',     
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full' }
 ];
 
