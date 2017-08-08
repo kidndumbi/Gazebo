@@ -11,9 +11,6 @@ import {Router} from "@angular/router";
 
 export class RegisterPageComponent implements OnInit {
 
-    email: string;
-   password: string;
-    loading = false;
 
 
     constructor(private auth: AuthService, private router: Router) { 
@@ -28,10 +25,10 @@ export class RegisterPageComponent implements OnInit {
 
 
 
-    async register(email:string, password: string){
+    async register(event){
  
      try{
-          const result = await this.auth.register(email, password);
+          const result = await this.auth.register(event.email, event.password);
 
           this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
           console.log('success!')

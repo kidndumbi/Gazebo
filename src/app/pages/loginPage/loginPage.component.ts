@@ -41,8 +41,8 @@ export class LoginPageComponent implements OnInit {
 
 
   register(event){
-
-      this.router.navigate(['profile'])
+      console.log('appleal');
+      this.router.navigate(['register'])
 
   }
 

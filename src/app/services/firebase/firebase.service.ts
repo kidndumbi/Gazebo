@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs/Observable';
+import { profile } from '../../models/profile.model';
 
 @Injectable()
 export class FirebaseService {
 
   user: Observable < firebase.User > ;
   items: FirebaseListObservable < any[] > ;
+  profileObject: FirebaseObjectObservable<profile>
 
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
+
+
+ 
 
     // this.items = db.list('/Users/', {
     //   query: {
@@ -27,6 +32,23 @@ export class FirebaseService {
 
     this.user = this.afAuth.authState;
 
+
+  }
+
+
+  async saveProfile(user: firebase.User, profile: profile){
+     
+     this.profileObject = this.db.object(`/profiles/${user.uid}`)
+
+     try {
+         await  this.profileObject.set(profile);
+         return true;
+     }
+     catch(e){
+          console.error(e);
+          return false;
+     }
+ 
 
   }
 
