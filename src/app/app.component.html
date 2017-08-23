@@ -1,4 +1,5 @@
 <!--The whole content below can be removed with the new code.-->
+<!-- <users-online></users-online> -->
         <md-toolbar color="primary">
             <button md-icon-button (click)="sidenav.toggle()" *ngIf="show">
                 <md-icon class="md-24" >menu</md-icon>
@@ -8,22 +9,22 @@
                  Logout
                 <!--<md-icon class="md-24" >tools</md-icon>-->
             </button>
-               <button md-icon-button routerLink="/tools" >
+               <!-- <button md-icon-button routerLink="/tools" >
                  <i class="material-icons">settings_input_component</i>
-                <!--<md-icon class="md-24" >tools</md-icon>-->
-            </button>
+               
+            </button> -->
         </md-toolbar>
 <md-sidenav-container >
     <md-sidenav #sidenav mode="side" class="app-sidenav" >
       <md-nav-list>
           <a md-list-item routerLink="/home" routerLinkActive="active">Home</a>
-          <a md-list-item href="page2.html">Friends</a>
-          <a md-list-item href="page3.html">Correspondence<i class="material-icons">textsms</i></a>
+          <a md-list-item href="#">Friends</a>
+          <a md-list-item href="/channels">Channels<i class="material-icons">textsms</i></a>
           <a md-list-item routerLink="/profile" >Profile</a>
       </md-nav-list>
     </md-sidenav>
 
-    <div class="app-content" style="height: 700px">
+    <div class="app-content container" style="height: 100%; ">
         <router-outlet></router-outlet>
     </div>
 </md-sidenav-container>

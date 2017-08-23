@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/homePage/homepage.component';
 import { LoginPageComponent } from './pages/loginPage/loginPage.component';
 import { RegisterPageComponent } from './pages/registerPage/registerPage.component';
 import { ProfilePageComponent } from './pages/profilePage/profilePage.component';
+import { ChannelsPageComponent  } from './pages/channelsPage/channelsPage.component';
 import {FirebaseGuard } from './services/firebase/guard.service';
 
 
@@ -28,6 +29,12 @@ export const appRoutes: Routes = [
   {
     path: 'profile',
     component: ProfilePageComponent,
+    canActivate: [FirebaseGuard],
+    data: {  }
+  },
+    {
+    path: 'channels',
+    component: ChannelsPageComponent,
     canActivate: [FirebaseGuard],
     data: {  }
   },

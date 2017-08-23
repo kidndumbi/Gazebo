@@ -1,4 +1,5 @@
 <h1>Personal Info</h1>
+<h3 color="primary">{{ profileData.email }}</h3>
 <hr/>
 
 
@@ -28,7 +29,7 @@
            </table>
         </div>  
          <div class="form-group">
-            <md-select placeholder="Gender" [(ngModel)]="selectedGenderValue" name="gender" required>
+            <md-select placeholder="Gender" [(ngModel)]="profileData.gender" name="gender" required>
                 <md-option *ngFor="let gender of genders" [value]="gender.value">
                 {{gender.viewValue}}
                 </md-option>
@@ -40,6 +41,13 @@
             <button mdSuffix [mdDatepickerToggle]="picker"></button>
             </md-input-container>
             <md-datepicker #picker></md-datepicker>
+        </div>
+         <div class="form-group">
+        <button *ngIf="!profileData.avatar" color="primary" md-raised-button  
+        (click)="launchAvatarModal()">Select Avatar</button>
+        <img *ngIf="profileData.avatar" [src]="profileData.avatar" title="" width="96" height="96" (click)="launchAvatarModal()">
+            <!--<img *ngIf="loading" src="" />-->
+            
         </div>
         <div class="form-group">
             <button color="primary" md-raised-button  type="submit">Save</button>

@@ -1,32 +1,105 @@
-import { Component, OnInit } from '@angular/core';
+import { profile } from './../../models/profile.model';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { FirebaseService } from '../../services/firebase/firebase.service';
 import { AuthService } from '../../services/firebase/auth.service';
 import {Router} from "@angular/router";
+import {  FirebaseListObservable } from 'angularfire2/database';
+import { PrivateChatModalComponent } from '../../modals/privateChatModal.component';
+import { ChatService } from '../../services/firebase/chat.service';
+import { MdDialog } from '@angular/material';
+import { Subscription } from 'rxjs/Subscription';
+import { User } from 'firebase/app';
+//import { Channel } from '../../models/channel.model';
+import 'rxjs/add/operator/map';
+
 
 
 
 @Component({
     selector: 'homePage',
-    templateUrl: 'homePage.component.html'
+    templateUrl: 'homePage.component.html',
+    styleUrls: ['homePage.component.css']
 })
 
-export class HomePageComponent implements OnInit {
-    constructor(private fire: FirebaseService, private auth: AuthService, private router: Router) {
+export class HomePageComponent implements OnInit , OnDestroy{
 
-          this.auth.getAuthenticatedUser().subscribe(user=>{
-              
-            //   console.log(user)
-            //   if(!user){
-            //       this.router.navigate(['login']); 
-            //   }
-            
-        })
-        
+  
+
+    publicChats: FirebaseListObservable<any[]>;
+    //temporay
+     //channels: FirebaseListObservable<Channel[]>;
+    //private authenticatedUser$: Subscription;
+    userProfile: profile;
+    chatText: string;
+
+
+
+    constructor(private firebaseService: FirebaseService, private auth: AuthService, private router: Router, 
+        private chat: ChatService, public dialog: MdDialog) {
+
+          this.publicChats =  chat.getAllpublicChats();
+
+            this.firebaseService.getAuthenticatedUserProfile().subscribe(profile => {
+                  
+                //console.log(profile);
+                this.userProfile = profile;
+                
+          });
+          //this.channels = chat.getChannelListRef();
+
+          // this.authenticatedUser$ = this.auth.getAuthenticatedUser().subscribe((user: User)=>{
+          //   this.authenticatedUser = user;
+
+          // });
+
      }
 
-    
+     submitChat(chatText: Event){
+
+        let result = this.chat.submitPublicChat(chatText.toString());
+
+     }
+
+
+     triggerModal(guestProfile: profile){
+
+         if(guestProfile.$key !== this.userProfile.$key){
+                this.launchModal(guestProfile);
+         }
+
+     }
+
+
+         ///modal
+    launchModal(guestProfile: profile){
+
+      console.log(guestProfile);
+
+         let dialogRef = this.dialog.open(PrivateChatModalComponent, {
+             width: '500px',
+             height: '600px',
+             data: {
+                    guestProfile: guestProfile,
+                    userProfile: this.userProfile
+                  }
+         });
+
+         dialogRef.afterClosed().subscribe(result=>{
+            
+         });
+
+    }
 
 
 
-    ngOnInit() { }
+      ngOnDestroy() { 
+
+        //this.authenticatedUser$.unsubscribe();
+     }
+
+
+
+    ngOnInit() {
+         
+     }
 }

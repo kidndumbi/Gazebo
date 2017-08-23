@@ -1,0 +1,16 @@
+<div>
+
+   <h2 md-dialog-title>Select an Avatar</h2>
+   <hr>
+   <md-dialog-content style="display: inline-block">
+
+    <img *ngFor="let item of avatars" (click)="selectAvartar(item.src)" 
+        [src]="item.src" [title]="item.title" width="96" height="96">
+   
+   </md-dialog-content>
+   
+   <hr>
+   <md-dialog-actions>
+       <!-- <button md-raised-button color="warn" (click)="close('I will not')">I will not</button> -->
+   </md-dialog-actions>
+</div>

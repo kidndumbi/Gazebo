@@ -1,17 +1,45 @@
 <div>
 
-   <h2 md-dialog-title>Private chat with</h2>
+   <h2 md-dialog-title>
+       <div >
+           <img [src]="guestProfile.avatar" title="" width="42" height="42">
+        <span style="color:#428bca">{{ guestProfile.first_name }} {{ guestProfile.last_name }}</span>
+       </div>
+       </h2>
    <hr>
    <md-dialog-content>
+
+
+     <div class="row">
+      <div class="col-lg-12" >
+
+        <div class="row" style=" height: 320px; overflow-y: auto;">
+            <div class="col-lg-12">
+                    <chatCanvas [PrivateChats]="messageList" 
+                    [authenticatedUser]="userProfile"
+                    [isPublic]=false
+                    ></chatCanvas>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-lg-12">
+                   <send-message-box  (sendChatText)="submitChat($event)"></send-message-box> 
+            </div>
+        </div>
+
+      
+
+      </div>
+
+ </div>
      
-     <h1> {{ yams }} </h1>
-        <h1> {{ yams }} </h1>
+   
 
    </md-dialog-content>
    
    <hr>
    <md-dialog-actions>
-       <button md-raised-button color="primary" (click)="dontGiveUp('dont give up')">dont give up</button>
-       <button md-raised-button color="warn" (click)="dontGiveUp('I will not')">I will not</button>
+       <!-- <button md-raised-button color="primary" (click)="dontGiveUp('dont give up')">dont give up</button>
+       <button md-raised-button color="warn" (click)="dontGiveUp('I will not')">I will not</button> -->
    </md-dialog-actions>
 </div>

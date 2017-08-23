@@ -13,5 +13,17 @@
     <button color="primary" md-raised-button (click)="launchModal()">launch modal</button>
 
   </md-tab>
+  <md-tab>
+    <ng-template md-tab-label>
+      Animations
+    </ng-template>
+    
+     animations
+
+     <div 
+     (click)="clickInfo = 'clicked'"
+     [@clickedState]="clickInfo"></div>
+
+  </md-tab>
 </md-tab-group>
 

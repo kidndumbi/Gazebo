@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth  } from 'angularfire2/auth';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 
 
@@ -20,6 +22,9 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password);
 
     }
+
+
+  
 
 
     getAuthenticatedUser(){

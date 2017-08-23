@@ -1,0 +1,20 @@
+<br/>
+<div class="row">
+  <div class="col-lg-4">
+    <h4 style="color:whitesmoke">Chats</h4>
+  </div>
+  <div class="col-lg-8">
+    <input class="form-control" placeholder="search">
+
+  </div>
+</div>
+<hr>
+
+
+
+
+<div *ngFor="let chat of chatsList | async" (click)="selectChat(chat)" style="border: 1px solid white; border-radius: 6px;height:70px;padding-top:5px;margin-bottom:3px">
+
+  <img [src]="chat.avatar" title="" width="42" height="42">
+  <span>{{ chat.first_name}} {{ chat.last_name}}</span>
+</div>

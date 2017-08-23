@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { login } from '../../models/login.model';
 
 
+
 @Component({
     selector: 'login',
     templateUrl: 'login.component.html',
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
         
          this.registerEvent.emit(true); 
      }
+
+
 
     ngOnInit() {
           

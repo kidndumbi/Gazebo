@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/firebase/auth.service';
 import {Router} from "@angular/router";
+import { profile } from '../../models/profile.model';
+import { FirebaseService } from '../../services/firebase/firebase.service';
 
 
 @Component({
@@ -12,8 +14,19 @@ import {Router} from "@angular/router";
 export class RegisterPageComponent implements OnInit {
 
 
+    profileData: profile = { 
+           first_name: "",
+           last_name: "",
+           email: "",
+           nick_name: "",
+           gender: "male",
+           birthday: "",
+           avatar: ""
+    };
 
-    constructor(private auth: AuthService, private router: Router) { 
+
+
+    constructor(private auth: AuthService, private router: Router,private firebaseService: FirebaseService) { 
 
         this.auth.getAuthenticatedUser().subscribe(user=>{
             if(user){
@@ -30,32 +43,27 @@ export class RegisterPageComponent implements OnInit {
      try{
           const result = await this.auth.register(event.email, event.password);
 
-          this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
-          console.log('success!')
-          this.router.navigate(['profile']); 
-     }catch(e){
-           
-           console.log(e.message);
-           this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
-          //  this.auth.logout().then(a=>{console.log(a)})
-          //  this.auth.getAuthenticatedUser().subscribe(data=>console.log(data))
-     }
+          this.auth.getAuthenticatedUser().subscribe(data=>{  
+         //console.log(data)
+                    this.profileData.email = data.email;
+                    this.firebaseService.saveProfile(this.profileData).then(data=>{
+
+                         console.log('success!')
+                        this.router.navigate(['profile']); 
+      
+                    });
+                        
+                    });
+                    
+                }catch(e){
+                    
+                    console.log(e.message);
+                    
+                
+                }
 
       }
 
-    //   register() {
-    //     this.loading = true;
-        // this.userService.create(this.model)
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
-    //}
 
 
 

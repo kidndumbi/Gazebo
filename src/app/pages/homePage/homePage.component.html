@@ -1,1 +1,36 @@
-<h1>Here is the home</h1>
+
+<div >
+     
+ <div class="row" style="padding-top:10px">
+      <div class="col-lg-3" style="border: 2px solid lightgrey; border-radius:6px;background-color:#7e92b7">
+         <users-online (selectedUser)="triggerModal($event)"></users-online> 
+      </div>
+      <div class="col-lg-6" style="border: 2px solid lightgrey; border-radius:6px;background-color:#7e92b7">
+
+        <div class="row" style=" height: 560px; overflow-y: auto;">
+            <div class="col-lg-12">
+                    <chatCanvas [Chats]="publicChats" 
+                    [authenticatedUser]="userProfile"
+                    [isPublic]=true
+                    ></chatCanvas>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-lg-12" style="padding-bottom:10px">
+                   <send-message-box  (sendChatText)="submitChat($event)"></send-message-box> 
+            </div>
+        </div>
+
+      
+
+      </div>
+      <div class="col-lg-3" style="border: 2px solid lightgrey; border-radius:6px;background-color:#7e92b7">
+         
+     </div>
+
+ </div>
+
+</div>
+
+
+

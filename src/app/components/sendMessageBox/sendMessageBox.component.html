@@ -1,0 +1,26 @@
+<div style="background-color:white; padding-left: 5px; border-radius:6px;padding-top:5px;border:1px solid lightgrey;">
+
+<md-grid-list cols="6" rowHeight="80px">
+  <md-grid-tile
+      
+      colspan="5"
+      rowspan="1"
+      style.background="">
+  <md-input-container class="fullwidth">
+      <textarea [(ngModel)]="chatText" placeholder="Enter text" mdInput maxlength="420"></textarea>
+  </md-input-container> 
+    
+  </md-grid-tile>
+      <md-grid-tile
+      
+      colspan="1"
+      rowspan="1"
+      style.background="">
+      <a md-fab routerLink="." (click)="submitChat()"><md-icon>chat</md-icon></a>
+    
+  </md-grid-tile>
+</md-grid-list>
+
+  
+
+</div>

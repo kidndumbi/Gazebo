@@ -5,7 +5,8 @@ export interface profile{
    email: string;
    nick_name: string;
    gender: 'male' | 'female';
-   birthday: Date;
-
+   birthday: string;
+   avatar: string;
+   $key?: string;
 
 }
