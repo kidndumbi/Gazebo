@@ -23,14 +23,14 @@ export class ChatHistoryItemComponent implements OnInit {
     }
 
     ngOnInit() {
-            this.chatsService.getPrivateChats(this.chat.$key).subscribe(chats=>{
+            // this.chatsService.getPrivateChats(this.chat.$key).subscribe(chats=>{
 
-                console.log(this.newMessage);
+            //     console.log(this.newMessage);
                       
-                console.log(chats);
-                this.newMessage = true;
-                console.log(this.newMessage);
+            //     console.log(chats);
+            //     this.newMessage = true;
+            //     console.log(this.newMessage);
 
-             });
+            //  });
      }
 }

@@ -5,22 +5,18 @@
             <md-input-container  class="fullwidth">
             <input type="email" mdInput name="email" #email="ngModel" placeholder="Email" [(ngModel)]="logingData.email"  email  required />
           </md-input-container>
-          <div padding *ngIf="email.invalid && email.dirty"style="color:red">
-               Email address in Invalid!
-          </div>
+     
         </div>
         <div class="form-group">
              <md-input-container  class="fullwidth">
             <input type="password" minlength="6"  placeholder="Password" #password="ngModel" mdInput name="password" [(ngModel)]="logingData.password"  required />
              </md-input-container>
-             <div padding *ngIf="password.invalid && password.dirty"style="color:red">
-               Password is Invalid!
-            </div>
+        
         </div>
         <div class="form-group">
-            <button color="primary" md-raised-button  type="submit" [disabled]="loginForm.invalid">Login</button>
+            <button color="primary" md-raised-button  type="submit" >Login</button>
             <!--<img *ngIf="loading" src="" />-->
-            <a (click)="register()" class="btn btn-link">Register</a>
+            <a (click)="register()" style="cursor:pointer" class="btn btn-link">Register</a>
         </div>
     </form>
 </div>

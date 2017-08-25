@@ -103,7 +103,9 @@ private authenticatedUser: User;
 
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        
+     }
 
      ngOnDestroy() { 
 

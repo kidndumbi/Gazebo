@@ -18,15 +18,9 @@ export class LoginComponent implements OnInit {
 
     constructor() { }
 
-    login(loginForm: HTMLFormElement){
-
-        console.log(loginForm);
-        console.log(this.logingData);
-
-        if(loginForm.valid){
+    login(){
         this.loginEvent.emit(this.logingData); 
-        }
-
+  
      }
 
      register(){

@@ -28,7 +28,19 @@ export class AvatarSelectModalComponent implements OnInit {
                 {src: "https://png.icons8.com/canada/color/96", title: "Canada" },
                 {src: "https://png.icons8.com/donald-trump/color/96", title: "Donald Trump" },
                 {src: "https://png.icons8.com/falcon/ultraviolet/96", title: "Falcon" },
-                {src: "https://png.icons8.com/basketball/color/96", title: "Basketball" }
+                {src: "https://png.icons8.com/basketball/color/96", title: "Basketball" },
+                { src:"https://png.icons8.com/hummingbird/color/96", title:"Hummingbird"},
+                { src:"https://png.icons8.com/puffin-bird/color/96", title:"Puffin Bird"},
+                { src:"https://png.icons8.com/unicorn/office/96", title:"Unicorn"},
+                { src:"https://png.icons8.com/brutus/color/96", title:"Brutus"},
+                { src:"https://png.icons8.com/brave/color/96", title:"Brave"},
+                { src:"https://png.icons8.com/woody-woodpecker/color/96", title:"Woody Woodpecker"},
+                { src:"https://png.icons8.com/stick-fighting/color/96", title:"Stick Fighting"},
+                { src:"https://png.icons8.com/detective/color/96", title:"Detective"},
+                { src:"https://png.icons8.com/edvard-munch/color/96", title:"Edvard Munch"},
+                { src:"https://png.icons8.com/wine-bottle/color/96", title:"wine"},
+                { src:"https://png.icons8.com/paper-money/color/96", title:"Paper"},
+                { src:"https://png.icons8.com/three-leaf-clover/color/96", title:"Three Leaf Clover"}
                 ];
            
 

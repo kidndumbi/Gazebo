@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { profile } from '../../models/profile.model';
 import { AvatarSelectModalComponent } from '../../modals/avatarSelect/avatarSelectModal.component';
 import { MdDialog } from '@angular/material';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'register',
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
     };
 
 
-    constructor( public dialog: MdDialog) { }
+    constructor( public dialog: MdDialog, private router: Router) { }
 
     register(formData: HTMLFormElement){
 
@@ -75,6 +76,10 @@ export class RegisterComponent implements OnInit {
               
          });
 
+    }
+
+    login(){
+        this.router.navigate(['login']); 
     }
 
     ngOnInit() { }
