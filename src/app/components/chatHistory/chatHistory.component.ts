@@ -1,23 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { profile } from './../../models/profile.model';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ChatService } from '../../services/firebase/chat.service';
 
 @Component({
     selector: 'chat-history',
-    templateUrl: 'chatHistory.component.html'
+    templateUrl: 'chatHistory.component.html',
+    styleUrls: ['chatHistory.component.css']
 })
 
 export class ChatHistoryComponent implements OnInit {
 
-    chatsList: Array<any[]>;
+    chatsLists: Observable<profile[]>;
+     @Output() selectedChat: EventEmitter<profile>;
+     newMessage:boolean = false;
 
     constructor(private chatsService: ChatService) { 
+        
+        this.selectedChat = new EventEmitter();
+        this.chatsLists = chatsService.getChatHistory();
 
-        chatsService.getChatHistory().subscribe(chats => {
-            console.log(chats);
-        })
+        // this.chatsList.subscribe(guestdata=>{
+
+        //     console.log(guestdata);
+        //      this.chatsService.getPrivateChats(guestdata.$key)
+        // })
+
+        
     }
 
-    selectChat(userId){
+    selectChat(user: profile){
+       
+        this.selectedChat.emit(user);
+
 
     }
 

@@ -13,21 +13,23 @@ export class LoginComponent implements OnInit {
 
     @Output() loginEvent = new EventEmitter;
     @Output() registerEvent = new EventEmitter;
-    // email:string = ""
-    // password: string = ""
-
+ 
     logingData: login = {email: "", password: ""};
 
     constructor() { }
 
-    login(){
+    login(loginForm: HTMLFormElement){
 
-        //let logingData = {email: this.email, password: this.password}
-         this.loginEvent.emit(this.logingData);  
+        console.log(loginForm);
+        console.log(this.logingData);
+
+        if(loginForm.valid){
+        this.loginEvent.emit(this.logingData); 
+        }
+
      }
 
      register(){
-        
          this.registerEvent.emit(true); 
      }
 

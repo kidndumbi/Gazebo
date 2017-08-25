@@ -27,6 +27,7 @@ import { FirebaseService } from './services/firebase/firebase.service';
 import { ChatService } from './services/firebase/chat.service';
 import { AuthService } from './services/firebase/auth.service';
 import {FirebaseGuard } from './services/firebase/guard.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 import { AppComponent } from './app.component';
@@ -63,7 +64,9 @@ import 'hammerjs';
     PrivateChatModalComponent,
     NotifySnackbarComponent
   ],
-  providers: [FirebaseService, AuthService, FirebaseGuard, ChatService],
+  providers: [FirebaseService, AuthService, FirebaseGuard, 
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

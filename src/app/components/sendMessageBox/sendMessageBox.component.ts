@@ -10,8 +10,14 @@ export class SendMessageBoxComponent implements OnInit {
 
         @Output() sendChatText = new EventEmitter;
          chatText: string;
+         //textCount:number;
 
-    constructor() { }
+    constructor() {
+
+        // this.textCount = this.chatText.count();
+     }
+
+        
 
 
         submitChat(){

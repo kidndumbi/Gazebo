@@ -1,5 +1,5 @@
 import { profile } from './../../models/profile.model';
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy,AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
 import { FirebaseService } from '../../services/firebase/firebase.service';
 import { AuthService } from '../../services/firebase/auth.service';
 import {Router} from "@angular/router";
@@ -21,9 +21,10 @@ import 'rxjs/add/operator/map';
     styleUrls: ['homePage.component.css']
 })
 
-export class HomePageComponent implements OnInit , OnDestroy{
+export class HomePageComponent implements OnInit , OnDestroy, AfterViewChecked{
 
-  
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  disableScrollDown = false;
 
     publicChats: FirebaseListObservable<any[]>;
     //temporay
@@ -40,12 +41,10 @@ export class HomePageComponent implements OnInit , OnDestroy{
           this.publicChats =  chat.getAllpublicChats();
 
             this.firebaseService.getAuthenticatedUserProfile().subscribe(profile => {
-                  
-                //console.log(profile);
+
                 this.userProfile = profile;
                 
           });
-          //this.channels = chat.getChannelListRef();
 
           // this.authenticatedUser$ = this.auth.getAuthenticatedUser().subscribe((user: User)=>{
           //   this.authenticatedUser = user;
@@ -73,8 +72,6 @@ export class HomePageComponent implements OnInit , OnDestroy{
          ///modal
     launchModal(guestProfile: profile){
 
-      console.log(guestProfile);
-
          let dialogRef = this.dialog.open(PrivateChatModalComponent, {
              width: '500px',
              height: '600px',
@@ -100,6 +97,18 @@ export class HomePageComponent implements OnInit , OnDestroy{
 
 
     ngOnInit() {
-         
+         this.scrollToBottom();
      }
+
+    ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
+
+
+  scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }                 
+    }
 }

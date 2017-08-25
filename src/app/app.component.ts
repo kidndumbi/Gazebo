@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
     constructor(private auth: AuthService, private router: Router, private firebaseService: FirebaseService) {
 
          this.auth.getAuthenticatedUser().subscribe(user=>{
-           
-           console.log(user)
+
            if(!user){
               this.myNav.close()
               this.show = false;
@@ -29,9 +28,14 @@ export class AppComponent implements OnInit {
            }else{
              this.myNav.open()
              this.show = true;
+
+             
+
            }
           
         })
+
+
 
      }
 

@@ -34,7 +34,8 @@ private authenticatedUser: User;
            nick_name: "",
            gender: "male",
            birthday: "",
-           avatar: ""
+           avatar: "",
+           $key:""
     };
   
 
@@ -45,6 +46,7 @@ private authenticatedUser: User;
             this.firebaseService.getAuthenticatedUserProfile().subscribe(profileData=>{  
                   
                     this.profileData = profileData;
+                    console.log(this.profileData);
             })
 
         // this.authenticatedUser$ = this.auth.getAuthenticatedUser().subscribe((user: User)=>{
@@ -62,9 +64,9 @@ private authenticatedUser: User;
 
     async saveProfile(){
 
-         this.profileData.birthday = this.profileData.birthday.toString();
+         //this.profileData.birthday = this.profileData.birthday.toString();
 
-         //console.log(this.profileData);
+         console.log(this.profileData);
 
             //this.profileData.email = this.authenticatedUser.email;
             const result = await this.firebaseService.saveProfile( this.profileData);

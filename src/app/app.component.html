@@ -4,6 +4,7 @@
             <button md-icon-button (click)="sidenav.toggle()" *ngIf="show">
                 <md-icon class="md-24" >menu</md-icon>
             </button>
+            <span md-truncate flex style="font-size:30px">GaZeebo</span>
              <span class="example-fill-remaining-space"></span>
                  <button md-icon-button (click)="logout()" *ngIf="show">
                  Logout
@@ -15,8 +16,8 @@
             </button> -->
         </md-toolbar>
 <md-sidenav-container >
-    <md-sidenav #sidenav mode="side" class="app-sidenav" >
-      <md-nav-list>
+    <md-sidenav #sidenav mode="side" class="app-sidenav" style="width:300px;background-color:darkgrey;">
+      <md-nav-list style="color:white">
           <a md-list-item routerLink="/home" routerLinkActive="active">Home</a>
           <a md-list-item href="#">Friends</a>
           <a md-list-item href="/channels">Channels<i class="material-icons">textsms</i></a>

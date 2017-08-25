@@ -47,11 +47,13 @@ export class FirebaseService {
   }
 
 
-  async saveProfile(profile: profile){
+  async saveProfile(profile: any){
 
-    profile.email = this.email;
-     
-     this.profileObject = this.db.object(`/profiles/${this.userId}`)
+        let key = profile.$key;
+      delete profile.$key
+
+
+     this.profileObject = this.db.object(`/profiles/${key}`)
 
      try {
          await  this.profileObject.set(profile);
@@ -65,10 +67,10 @@ export class FirebaseService {
 
   }
 
-  // getProfile(user: firebase.User): Observable < profile> {
+  getProfile(user: firebase.User): Observable < profile> {
 
-  //     return this.db.object(`/profiles/${user.uid}`)
-  // }
+      return this.db.object(`/profiles/${user.uid}`)
+  }
 
 
     getAuthenticatedUserProfile(){
@@ -100,55 +102,6 @@ export class FirebaseService {
          return this.db.list('online-users');
     }
 
-
-
-//   getAllLists(): Observable < any[] > {
-//     return this.db.list('/myLists/');
-//   }
-//   getListDetailsById(id: string): Observable < any > {
-//     return this.db.list('/myLists/' + id);
-//   }
-
-  // createListTitle( title: string) : string {
-
-  //     if(title){
-  //       let r = this.db.list('/myLists/').push({
-  //       title: title,
-
-  //      });
-  
-  //    return r.key;
-
-  //     }
-
-  // }
-
-//   createListItem( itemDescription: string, id:string) : string {
-
-//       if(itemDescription){
-//         let r = this.db.list('/myLists/' + id + '/listItems').push({
-//         item: itemDescription,
-
-//        });
-  
-//         return r.key;
-
-//       }
-
-//   }
-
-//   deleteList(key:string){
-//       return this.db.list('/myLists/' + key).remove();
-//   }
-
-//   deleteListItem(listKey:string, itemKey: string){
-//       return this.db.list('/myLists/' + listKey + '/listItems/' + itemKey).remove();
-//   }
-
-
-  
-
-  
 
 //   getquizzes() {
 //     return this.db.list('/Quizes/', {

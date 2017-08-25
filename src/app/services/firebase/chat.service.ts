@@ -28,7 +28,7 @@ export class ChatService {
                     this.uid = Data.$key;
                     this.profileData = Data;
 
-                    this.addChannel('first channel');
+                    //this.addChannel('first channel');
                    
             })
 
@@ -85,7 +85,6 @@ export class ChatService {
             return Observable.forkJoin(
                 chats.map(chat => this.db.object(`/messages/${chat.$key}`).first()),
                 (...vals:message[]) => {
-             
                     return vals;
                 }
                 
@@ -100,6 +99,23 @@ export class ChatService {
         return this.authService.getAuthenticatedUser()
         .map(auth => auth.uid)
         .mergeMap(uid => this.db.list(`/user-messages/${uid}/`))
+        .map(users => {
+           return users.reduce((userIds, x)=>{
+                userIds.push(x.$key)
+                return userIds
+            },[])
+        })
+        .mergeMap(userIds => {
+            return Observable.forkJoin(
+                userIds.map(userId => this.db.object(`/profiles/${userId}`).first()),
+                (...vals:profile[]) => {
+             
+                    return vals;
+                }
+                
+            )
+
+          });
 
     }
 

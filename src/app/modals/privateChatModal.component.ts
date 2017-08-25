@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { User } from 'firebase/app';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 import {MD_DIALOG_DATA} from '@angular/material';
 import { profile } from '../models/profile.model';
@@ -13,6 +13,8 @@ import { ChatService } from '../services/firebase/chat.service';
 })
 
 export class PrivateChatModalComponent implements OnInit {
+
+    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
     
     guestProfile: profile;
@@ -31,7 +33,8 @@ export class PrivateChatModalComponent implements OnInit {
         last_name: ""
     },
 
-    content: ""
+    content: "",
+    dateTime: null
     }
 
     messageList: Observable<message[]>;
@@ -63,6 +66,7 @@ export class PrivateChatModalComponent implements OnInit {
         try{
 
             this.message.content = chatText;
+            this.message.dateTime = new Date().getTime();
          
             if(this.message.content){
                     await this.chat.submitPrivateChat(this.message);
@@ -75,9 +79,6 @@ export class PrivateChatModalComponent implements OnInit {
       
     }
 
-   
-    
-   
 
     dontGiveUp(des){
 
@@ -85,5 +86,18 @@ export class PrivateChatModalComponent implements OnInit {
         this.thisDialogRef.close(des);
     }
 
-    ngOnInit() { }
+       ngOnInit() { 
+             
+        this.scrollToBottom();
+    }
+
+    ngAfterViewChecked() {        
+        this.scrollToBottom();        
+    } 
+
+    scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }                 
+    }
 }

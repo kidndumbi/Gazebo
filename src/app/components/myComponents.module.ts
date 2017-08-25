@@ -11,6 +11,7 @@ import { FormsModule }    from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarSelectModalComponent } from '../modals/avatarSelect/avatarSelectModal.component';
+import { ChatHistoryItemComponent } from '../components/chatHistory/chatHistoryItem/chatHistoryItem.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AvatarSelectModalComponent } from '../modals/avatarSelect/avatarSelectM
          AvatarSelectModalComponent,
          SendMessageBoxComponent,
           UsersOnlineComponent,
+          ChatHistoryItemComponent,
         ChatHistoryComponent],
          
     providers: [],

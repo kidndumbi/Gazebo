@@ -14,15 +14,15 @@ import { FirebaseService } from '../../services/firebase/firebase.service';
 export class RegisterPageComponent implements OnInit {
 
 
-    profileData: profile = { 
-           first_name: "",
-           last_name: "",
-           email: "",
-           nick_name: "",
-           gender: "male",
-           birthday: "",
-           avatar: ""
-    };
+    // profileData: profile = { 
+    //        first_name: "",
+    //        last_name: "",
+    //        email: "nicki@swango.com",
+    //        nick_name: "",
+    //        gender: "male",
+    //        birthday: "",
+    //        avatar: ""
+    // };
 
 
 
@@ -30,7 +30,7 @@ export class RegisterPageComponent implements OnInit {
 
         this.auth.getAuthenticatedUser().subscribe(user=>{
             if(user){
-             this.router.navigate(['home']); 
+             //this.router.navigate(['home']); 
             }
         })
 
@@ -41,20 +41,29 @@ export class RegisterPageComponent implements OnInit {
     async register(event){
  
      try{
-          const result = await this.auth.register(event.email, event.password);
+          const result = await this.auth.register(event.userData.email, event.userData.password);
 
-          this.auth.getAuthenticatedUser().subscribe(data=>{  
-         //console.log(data)
-                    this.profileData.email = data.email;
-                    this.firebaseService.saveProfile(this.profileData).then(data=>{
+          console.log(result);
 
-                         console.log('success!')
-                        this.router.navigate(['profile']); 
-      
+          if(result){
+              event.profileData.$key = result.uid;
+              console.log(event.profileData);
+
+              this.firebaseService.saveProfile(event.profileData).then(result=>{
+
+                        if(result){
+                              console.log('success!')
+                                  
+                            this.router.navigate(['home']); 
+                        }else{
+                            console.log('failed!')
+                        }
+
                     });
-                        
-                    });
-                    
+
+
+          }
+
                 }catch(e){
                     
                     console.log(e.message);

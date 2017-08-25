@@ -58,3 +58,7 @@
     right: -9px;   
     background-color:  #e6e6ff  
 }
+
+   .list{height: 200px; overflow-y: scroll;}
+    p{margin: 2px}
+    p:nth-child(odd){background: #eee;}
