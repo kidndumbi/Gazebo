@@ -7,6 +7,7 @@ import { HomePageComponent } from './pages/homePage/homepage.component';
 import { LoginPageComponent } from './pages/loginPage/loginPage.component';
 import { RegisterPageComponent } from './pages/registerPage/registerPage.component';
 import { ChannelsPageComponent  } from './pages/channelsPage/channelsPage.component';
+import { ContactPageComponent } from './pages/contactPage/contactPage.component';
 import { ProfilePageComponent } from './pages/profilePage/profilePage.component';
 import { PrivateChatModalComponent } from './modals/privateChatModal.component';
 import { NotifySnackbarComponent } from './utils/notifySnackbar/notifySnackbar.component';
@@ -26,7 +27,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseService } from './services/firebase/firebase.service';
 import { ChatService } from './services/firebase/chat.service';
 import { AuthService } from './services/firebase/auth.service';
-import {FirebaseGuard } from './services/firebase/guard.service';
+import { FirebaseGuard } from './services/firebase/guard.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
@@ -43,7 +44,8 @@ import 'hammerjs';
     RegisterPageComponent,
     ProfilePageComponent,
     PrivateChatModalComponent,
-    ChannelsPageComponent 
+    ChannelsPageComponent ,
+    ContactPageComponent
  
     
   ],
