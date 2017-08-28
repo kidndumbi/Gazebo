@@ -9,6 +9,7 @@ import { RegisterPageComponent } from './pages/registerPage/registerPage.compone
 import { ChannelsPageComponent  } from './pages/channelsPage/channelsPage.component';
 import { ContactPageComponent } from './pages/contactPage/contactPage.component';
 import { ProfilePageComponent } from './pages/profilePage/profilePage.component';
+import { FriendsPageComponent } from './pages/FreindsPage/friendsPage.component';
 import { PrivateChatModalComponent } from './modals/privateChatModal.component';
 import { NotifySnackbarComponent } from './utils/notifySnackbar/notifySnackbar.component';
 import { RouterModule } from '@angular/router';
@@ -45,7 +46,8 @@ import 'hammerjs';
     ProfilePageComponent,
     PrivateChatModalComponent,
     ChannelsPageComponent ,
-    ContactPageComponent
+    ContactPageComponent,
+    FriendsPageComponent
  
     
   ],
